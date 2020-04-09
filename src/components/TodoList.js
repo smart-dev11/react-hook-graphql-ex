@@ -7,7 +7,7 @@ import { TodoContext } from './../contexts/todos';
 export default function TodoList()  {
   const { state } = useContext(TodoContext);
   const { todos } = state;
-  console.log(todos)
+
   return (
     <Table striped>
       <thead>
