@@ -1,0 +1,29 @@
+.container {
+    padding: 50px;
+}
+
+form {
+    display: flex;
+}
+
+.form-group {
+    margin: 0;
+}
+
+.btn-primary {
+    margin-left: 30px;
+}
+
+.btn-reset {
+    margin-left: 30px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid;
+}
+
+.add-todo-form {
+    margin-bottom: 30px;
+}
