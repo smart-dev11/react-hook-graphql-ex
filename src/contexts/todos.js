@@ -1,6 +1,6 @@
 import React, { useReducer, createContext } from "react";
-import rootReducer from '../reducers'
-import { global_state } from '../reducers'
+import rootReducer from "../reducers";
+import { global_state } from "../reducers";
 
 const TodoContext = createContext();
 

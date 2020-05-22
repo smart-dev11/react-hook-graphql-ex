@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Button, Input, Form, FormGroup, Row, Col } from 'reactstrap';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import React, { useState, useContext, useEffect } from "react";
+import { Button, Input, Form, FormGroup, Row, Col } from "reactstrap";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
-import * as todoActions from '../actions';
-import { TodoContext } from './../contexts/todos';
+import * as todoActions from "../actions";
+import { TodoContext } from "./../contexts/todos";
 
 const ADD_TODO = gql`
   mutation AddTodo($content: String!) {
@@ -17,28 +17,28 @@ const ADD_TODO = gql`
 
 export default function AddTodo() {
   const [createTodo, createTodoRes] = useMutation(ADD_TODO);
-  const [taskName, setTaskName] = useState('')
+  const [taskName, setTaskName] = useState("");
   const { dispatch } = useContext(TodoContext);
 
   useEffect(() => {
     const { data } = createTodoRes;
-    if(data) {
+    if (data) {
       dispatch(todoActions.addTodo(data.createTodo));
     }
 
-    return() => {}
+    return () => {};
   }, [createTodoRes.data]);
 
   const submitHandle = (e) => {
     e.preventDefault();
     if (!taskName.trim()) {
-      return
+      return;
     }
 
-    createTodo({ variables: { content: taskName } })
+    createTodo({ variables: { content: taskName } });
 
-    setTaskName('');
-  }
+    setTaskName("");
+  };
 
   return (
     <Row>
@@ -48,8 +48,8 @@ export default function AddTodo() {
             <Input
               name="taskName"
               value={taskName}
-              placeholder='Enter new task'
-              onChange={e => setTaskName(e.target.value)}
+              placeholder="Enter new task"
+              onChange={(e) => setTaskName(e.target.value)}
             />
           </FormGroup>
           <Button color="primary" type="submit" className="btn-create-task">
@@ -58,5 +58,5 @@ export default function AddTodo() {
         </Form>
       </Col>
     </Row>
-  )
+  );
 }
