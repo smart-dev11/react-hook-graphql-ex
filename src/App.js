@@ -11,7 +11,7 @@ const App = () => (
     <TodoContextProvider>
       <AddTodo />
       <TodoList />
-      <Footer />
+      {/* <Footer /> */}
     </TodoContextProvider>
 
   </div>

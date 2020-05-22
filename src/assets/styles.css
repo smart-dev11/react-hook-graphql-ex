@@ -10,7 +10,7 @@ form {
     margin: 0;
 }
 
-.btn-primary {
+.btn-create-task {
     margin-left: 30px;
 }
 
@@ -26,4 +26,9 @@ form {
 
 .add-todo-form {
     margin-bottom: 30px;
+}
+
+.input-edit-content {
+    max-width: 500px;
+    width: 100%;
 }

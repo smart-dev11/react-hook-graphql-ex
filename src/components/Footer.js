@@ -47,8 +47,8 @@ export default function Footer()  {
         <br/>
         <Button color="info" type="button" onClick={() => clearTodo()}>Clear Tasks</Button>
         <Button color="info" type="button" className="btn btn-reset" onClick={() => resetTodo()}>Reset Tasks</Button>
-        {/* <Button color="primary" onClick={() => incrementDelta()}>Increment Delta</Button>
-        <Button color="primary" onClick={increment}>Increment Counter</Button> */}
+        <Button color="primary" onClick={() => incrementDelta()}>Increment Delta</Button>
+        <Button color="primary" onClick={increment}>Increment Counter</Button>
       </Col>
     </Row>
   )
