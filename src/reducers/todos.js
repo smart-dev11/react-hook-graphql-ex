@@ -3,6 +3,7 @@ export const REMOVE_TODO = "REMOVE_TODO";
 export const CLEAR_TODO = "CLEAR_TODO";
 export const RESET_TODO = "RESET_TODO";
 export const GET_TODOS = "GET_TODOS";
+export const UPDATE_TODO = "UPDATE_TODO";
 
 export const initial_state = {
   todoLists: [],
@@ -30,9 +31,17 @@ const todosReducer = (state = initial_state, action) => {
       };
     case "REMOVE_TODO": {
       const todoLists = state.todoLists.filter(
-        (todo) => todo._id !== action._id
+        (todo) => todo._id !== action.payload
       );
       return { ...state, todoLists };
+    }
+    case "UPDATE_TODO": {
+      const newtodoLists = state.todoLists.map((todo, index) => {
+        if (todo._id === action.payload._id) {
+          state.todoLists.splice(index, 1);
+        }
+      });
+      return { ...state, newtodoLists };
     }
     case "CLEAR_TODO":
       return { ...state, todoLists: [] };

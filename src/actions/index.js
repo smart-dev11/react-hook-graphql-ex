@@ -15,9 +15,14 @@ export const addTodo = (data) => ({
   payload: data,
 });
 
+export const updateTodo = (data) => ({
+  type: "UPDATE_TODO",
+  payload: data,
+});
+
 export const removeTodo = (id) => ({
   type: "REMOVE_TODO",
-  _id: id,
+  payload: id,
 });
 
 export const clearTodo = () => ({

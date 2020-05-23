@@ -41,10 +41,9 @@ const Todo = ({ todo, checkEditRow, isEditing }) => {
 
   useEffect(() => {
     const { data } = updateTodoRes;
-    console.log(data);
-    // if(data && data.updateTodo) {
-    //   // dispatch(todoActions.removeTodo(id))
-    // }
+    if (data && data.updateTodo) {
+      dispatch(todoActions.updateTodo(data.updateTodo));
+    }
     return () => {};
   }, [updateTodoRes.data]);
 
