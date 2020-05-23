@@ -42,18 +42,20 @@ export default function TodoList() {
     <Table striped>
       <thead>
         <tr>
+          <th>No</th>
           <th>Task List</th>
           <th>Delete</th>
           <th>Edit</th>
         </tr>
       </thead>
       <tbody>
-        {todos.todoLists.map((todo) => (
+        {todos.todoLists.map((todo, index) => (
           <Todo
             key={todo._id}
             todo={todo}
             checkEditRow={checkEditRow}
             isEditing={isEditing}
+            index={index}
           />
         ))}
       </tbody>

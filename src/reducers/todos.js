@@ -20,14 +20,7 @@ const todosReducer = (state = initial_state, action) => {
     case "ADD_TODO":
       return {
         ...state,
-        todoLists: [
-          ...state.todoLists,
-          {
-            _id: action.payload._id,
-            content: action.payload.content,
-            done: true,
-          },
-        ],
+        todoLists: state.todoLists.concat(action.payload),
       };
     case "REMOVE_TODO": {
       const todoLists = state.todoLists.filter(
@@ -36,10 +29,11 @@ const todosReducer = (state = initial_state, action) => {
       return { ...state, todoLists };
     }
     case "UPDATE_TODO": {
-      const newtodoLists = state.todoLists.map((todo, index) => {
+      const newtodoLists = state.todoLists.map((todo) => {
         if (todo._id === action.payload._id) {
-          state.todoLists.splice(index, 1);
+          todo.content = action.payload.content;
         }
+        return todo;
       });
       return { ...state, newtodoLists };
     }

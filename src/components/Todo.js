@@ -23,7 +23,7 @@ const UPDATE_TODO = gql`
   }
 `;
 
-const Todo = ({ todo, checkEditRow, isEditing }) => {
+const Todo = ({ index, todo, checkEditRow, isEditing }) => {
   const [deleteTodo, deleteTodoRes] = useMutation(REMOVE_TODO);
   const [updateTodo, updateTodoRes] = useMutation(UPDATE_TODO);
 
@@ -74,6 +74,7 @@ const Todo = ({ todo, checkEditRow, isEditing }) => {
 
   return (
     <tr>
+      <th>{index + 1}</th>
       {isEditing === todo._id ? (
         <th scope="row">
           <Input
