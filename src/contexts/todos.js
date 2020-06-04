@@ -7,7 +7,7 @@ const TodoContext = createContext();
 function TodoContextProvider(props) {
   const [state, dispatch] = useReducer(rootReducer, global_state);
   const value = { state, dispatch };
-
+  console.log("todoLists", state.todos.todoLists);
   return (
     <TodoContext.Provider value={value}>{props.children}</TodoContext.Provider>
   );

@@ -35,7 +35,8 @@ const todosReducer = (state = initial_state, action) => {
         }
         return todo;
       });
-      return { ...state, newtodoLists };
+      console.log(111, newtodoLists);
+      return { ...state, todoLists: newtodoLists };
     }
     case "CLEAR_TODO":
       return { ...state, todoLists: [] };

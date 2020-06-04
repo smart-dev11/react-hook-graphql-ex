@@ -25,6 +25,7 @@ export default function TodoList() {
   useEffect(() => {
     if (getTodosRef.data)
       dispatch(todoActions.getTodos(getTodosRef.data.getTodos));
+
     return () => {};
   }, [getTodosRef.data]);
 
