@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Form, FormGroup, Label, Row, Col } from "reactstrap";
 import * as _ from "lodash";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
 import { registerFormValidate } from "../../helpers/validates";
+
+const REGISTER = gql`
+  mutation Register($email: String!, $password: String!) {
+    signUp(email: $email, password: $password) {
+      _id
+      email
+    }
+  }
+`;
 
 function Register() {
   const [errors, setErrors] = useState({});
   const { register, handleSubmit, control } = useForm(); // initialise the hook
+  const [signUp, signUpRes] = useMutation(REGISTER);
+
+  useEffect(() => {
+    const { data } = signUpRes;
+
+    console.log(12312, data);
+
+    return () => {};
+  }, [signUpRes.data]);
+
   const onSubmit = (data) => {
     const errors = registerFormValidate(data);
     setErrors(errors);
-    if (!_.isEmpty(errors)) {
-      console.log(123123);
+    if (_.isEmpty(errors)) {
+      signUp({ variables: { email: data.email, password: data.password } });
     }
   };
 
