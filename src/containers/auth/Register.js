@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Input, Form, FormGroup, Label, Row, Col } from "reactstrap";
+import {
+  Button,
+  Input,
+  Form,
+  FormGroup,
+  Label,
+  Row,
+  Col,
+  Alert,
+} from "reactstrap";
 import * as _ from "lodash";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
@@ -19,16 +28,22 @@ const REGISTER = gql`
 
 function Register() {
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
+  const [visible, setVisible] = useState(false);
   const { register, handleSubmit, control } = useForm(); // initialise the hook
   const [signUp, signUpRes] = useMutation(REGISTER);
 
   useEffect(() => {
-    const { data } = signUpRes;
-
-    console.log(12312, data);
-
+    const { called, data, loading, error } = signUpRes;
+    if (called && !loading && error) {
+      setVisible(true);
+      setMessage("Login Failed");
+    } else if (called && !loading && !error) {
+      setVisible(true);
+      setMessage("Login Success");
+    }
     return () => {};
-  }, [signUpRes.data]);
+  }, [signUpRes]);
 
   const onSubmit = (data) => {
     const errors = registerFormValidate(data);
@@ -38,10 +53,22 @@ function Register() {
     }
   };
 
+  const onDismiss = () => setVisible(false);
+
   return (
     <div className="input-form">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
+          <Col sm={12}>
+            <Alert
+              color="primary"
+              isOpen={visible}
+              toggle={onDismiss}
+              fade={false}
+            >
+              {message}
+            </Alert>
+          </Col>
           <Col sm={12}>
             <FormGroup row>
               <Label for="email">Email:</Label>
