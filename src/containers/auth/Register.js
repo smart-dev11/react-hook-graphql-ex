@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Form, FormGroup, Label, Row, Col } from "reactstrap";
 import * as _ from "lodash";
@@ -67,7 +68,9 @@ function Register() {
                 control={control}
                 defaultValue=""
               />
-              {errors.confirmPassword && "Password is required."}
+              {errors.password && (
+                <span className="error">Password is required.</span>
+              )}
             </FormGroup>
           </Col>
           <Col sm={12}>
@@ -81,13 +84,16 @@ function Register() {
                 control={control}
                 defaultValue=""
               />
-              {errors.confirmPassword && "Confirm Password is required."}
+              {errors.confirmPassword && (
+                <span className="error">Confirm Password is required.</span>
+              )}
             </FormGroup>
           </Col>
-          <Col sm={12}>
-            <Button color="primary" type="submit">
-              Submit
+          <Col sm={12} className="form-bottom">
+            <Button color="primary" type="submit" className="btn-auth">
+              Register
             </Button>
+            <Link to={"/login"}>Login</Link>
           </Col>
         </Row>
       </Form>

@@ -41,3 +41,21 @@ form {
   align-items: center;
   justify-content: center;
 }
+.input-form form {
+  max-width: 400px;
+  width: 100%;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+.form-bottom {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+.btn-auth {
+  margin-right: 30px;
+}
