@@ -28,7 +28,10 @@ const LOGIN = gql`
 
 function Login() {
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({
+    content: "",
+    color: "default",
+  });
   const [visible, setVisible] = useState(false);
   const { register, handleSubmit, control } = useForm(); // initialise the hook
   const [logIn, logInRes] = useMutation(LOGIN);
@@ -37,10 +40,16 @@ function Login() {
     const { called, data, loading, error } = logInRes;
     if (called && !loading && error) {
       setVisible(true);
-      setMessage("Login Failed");
+      setMessage({
+        content: "Login Failed",
+        color: "danger",
+      });
     } else if (called && !loading && !error) {
       setVisible(true);
-      setMessage("Login Success");
+      setMessage({
+        content: "Loin Success",
+        color: "success",
+      });
     }
     return () => {};
   }, [logInRes]);
@@ -62,12 +71,12 @@ function Login() {
         <Row>
           <Col sm={12}>
             <Alert
-              color="primary"
+              color={message.color}
               isOpen={visible}
               toggle={onDismiss}
               fade={false}
             >
-              {message}
+              {message.content}
             </Alert>
           </Col>
           <Col sm={12}>

@@ -28,7 +28,10 @@ const REGISTER = gql`
 
 function Register() {
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({
+    content: "",
+    color: "default",
+  });
   const [visible, setVisible] = useState(false);
   const { register, handleSubmit, control } = useForm(); // initialise the hook
   const [signUp, signUpRes] = useMutation(REGISTER);
@@ -37,10 +40,16 @@ function Register() {
     const { called, data, loading, error } = signUpRes;
     if (called && !loading && error) {
       setVisible(true);
-      setMessage("Login Failed");
+      setMessage({
+        content: "Signup Failed",
+        color: "danger",
+      });
     } else if (called && !loading && !error) {
       setVisible(true);
-      setMessage("Login Success");
+      setMessage({
+        content: "Signup Success",
+        color: "success",
+      });
     }
     return () => {};
   }, [signUpRes]);
@@ -61,12 +70,12 @@ function Register() {
         <Row>
           <Col sm={12}>
             <Alert
-              color="primary"
+              color={message.color}
               isOpen={visible}
               toggle={onDismiss}
               fade={false}
             >
-              {message}
+              {message.content}
             </Alert>
           </Col>
           <Col sm={12}>
