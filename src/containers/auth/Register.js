@@ -16,7 +16,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { registerFormValidate } from "../../helpers/validates";
-import * as todoActions from "../../store/actions";
+import { authAction } from "../../store/actions";
 
 const REGISTER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -53,7 +53,7 @@ function Register() {
         color: "success",
       });
       console.log(data);
-      dispatch(todoActions.registerSuccess(data.signUp));
+      dispatch(authAction.registerSuccess(data.signUp));
     }
     return () => {};
   }, [signUpRes]);

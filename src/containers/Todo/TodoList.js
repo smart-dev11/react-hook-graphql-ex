@@ -4,7 +4,7 @@ import { Table } from "reactstrap";
 import { useLazyQuery } from "@apollo/react-hooks";
 
 import Todo from "./Todo";
-import * as todoActions from "../../store/actions";
+import { todoActions } from "../../store/actions";
 import { GET_TODOS } from "../../graphql/queries";
 
 export default function TodoList() {

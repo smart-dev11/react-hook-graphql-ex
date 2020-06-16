@@ -17,7 +17,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { loginFormValidate } from "../../helpers/validates";
-import * as todoActions from "../../store/actions";
+import { authAction } from "../../store/actions";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -54,7 +54,7 @@ function Login() {
         content: "Loin Success",
         color: "success",
       });
-      dispatch(todoActions.loginSuccess(data.logIn));
+      dispatch(authAction.loginSuccess(data.logIn));
     }
     return () => {};
   }, [logInRes]);

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, Form, FormGroup, Row, Col } from "reactstrap";
 import { useMutation } from "@apollo/react-hooks";
 
-import * as todoActions from "../../store/actions";
+import { todoActions } from "../../store/actions";
 import { ADD_TODO } from "../../graphql/mutations";
 
 export default function AddTodo() {

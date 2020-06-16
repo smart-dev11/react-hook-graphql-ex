@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Button, Input } from "reactstrap";
 import { useMutation } from "@apollo/react-hooks";
 
-import * as todoActions from "../../store/actions";
+import { todoActions } from "../../store/actions";
 import { UPDATE_TODO, REMOVE_TODO } from "../../graphql/mutations";
 
 const Todo = ({ index, todo, checkEditRow, isEditing }) => {
