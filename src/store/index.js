@@ -6,8 +6,8 @@ import { createBrowserHistory } from "history";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/es/storage";
 
-import reducers from "../reducers";
-import sagas from "../sagas";
+import reducers from "./reducers";
+import sagas from "./sagas";
 
 export const history = createBrowserHistory();
 

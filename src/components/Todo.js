@@ -3,7 +3,7 @@ import { Button, Input } from "reactstrap";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
-import * as todoActions from "../actions";
+import * as todoActions from "../store/actions";
 import { TodoContext } from "./../contexts/todos";
 
 const REMOVE_TODO = gql`

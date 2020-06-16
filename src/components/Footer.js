@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useState, useMemo } from "react";
 import { Button, Row, Col } from "reactstrap";
 
-import * as todoActions from "../actions";
+import * as todoActions from "../store/actions";
 import { TodoContext } from "./../contexts/todos";
 
 export default function Footer() {
