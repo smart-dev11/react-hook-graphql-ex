@@ -7,7 +7,7 @@ import ApolloClient from "apollo-boost";
 
 import Login from "./containers/auth/Login";
 import Register from "./containers/auth/Register";
-import Todo from "./containers/Todo";
+import Todo from "./containers/Todo/";
 import configureStore, { history } from "./store/createStore";
 import PrivateRoute from "./route-helpers/PrivateRoute";
 import GuestRoute from "./route-helpers/GuestRoute";
@@ -24,13 +24,9 @@ const App = () => (
       <PersistGate loading="Loading..." persistor={persistor}>
         <Router history={history}>
           <Switch>
-            <GuestRoute exact path="/login" component={Login}></GuestRoute>
-            <GuestRoute
-              exact
-              path="/register"
-              component={Register}
-            ></GuestRoute>
-            <PrivateRoute exact path="/" component={Todo}></PrivateRoute>
+            <GuestRoute exact path="/login" component={Login} />
+            <GuestRoute exact path="/register" component={Register} />
+            <PrivateRoute exact path="/" component={Todo} />
           </Switch>
         </Router>
       </PersistGate>

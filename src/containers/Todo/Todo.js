@@ -1,35 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Input } from "reactstrap";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import * as todoActions from "../../store/actions";
-import { TodoContext } from "../../contexts/todos";
-
-const REMOVE_TODO = gql`
-  mutation RemoveTodo($_id: String!) {
-    deleteTodo(_id: $_id) {
-      success
-    }
-  }
-`;
-
-const UPDATE_TODO = gql`
-  mutation UpdateTodo($_id: ID!, $content: String!) {
-    updateTodo(_id: $_id, content: $content) {
-      _id
-      content
-    }
-  }
-`;
+import { UPDATE_TODO, REMOVE_TODO } from "../../graphql/mutations";
 
 const Todo = ({ index, todo, checkEditRow, isEditing }) => {
-  const [deleteTodo, deleteTodoRes] = useMutation(REMOVE_TODO);
-  const [updateTodo, updateTodoRes] = useMutation(UPDATE_TODO);
-
-  const { dispatch } = useContext(TodoContext);
+  const dispatch = useDispatch();
   const [id, setId] = useState("");
   const [editing, setEditing] = useState(null);
+
+  const [deleteTodo, deleteTodoRes] = useMutation(REMOVE_TODO);
+  const [updateTodo, updateTodoRes] = useMutation(UPDATE_TODO);
 
   useEffect(() => {
     const { data } = deleteTodoRes;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDispatch } from "react";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -16,6 +16,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { registerFormValidate } from "../../helpers/validates";
+import * as todoActions from "../../store/actions";
 
 const REGISTER = gql`
   mutation Register($email: String!, $password: String!) {
@@ -33,11 +34,12 @@ function Register() {
     color: "default",
   });
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   const { handleSubmit, control } = useForm(); // initialise the hook
   const [signUp, signUpRes] = useMutation(REGISTER);
 
   useEffect(() => {
-    const { called, loading, error } = signUpRes;
+    const { called, data, loading, error } = signUpRes;
     if (called && !loading && error) {
       setVisible(true);
       setMessage({
@@ -50,6 +52,8 @@ function Register() {
         content: "Signup Success",
         color: "success",
       });
+      console.log(data);
+      dispatch(todoActions.registerSuccess(data.signUp));
     }
     return () => {};
   }, [signUpRes]);

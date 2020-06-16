@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -16,6 +17,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { loginFormValidate } from "../../helpers/validates";
+import * as todoActions from "../../store/actions";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -33,11 +35,12 @@ function Login() {
     color: "default",
   });
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   const { handleSubmit, control } = useForm(); // initialise the hook
   const [logIn, logInRes] = useMutation(LOGIN);
 
   useEffect(() => {
-    const { called, loading, error } = logInRes;
+    const { called, data, loading, error } = logInRes;
     if (called && !loading && error) {
       setVisible(true);
       setMessage({
@@ -45,11 +48,13 @@ function Login() {
         color: "danger",
       });
     } else if (called && !loading && !error) {
+      console.log(data);
       setVisible(true);
       setMessage({
         content: "Loin Success",
         color: "success",
       });
+      dispatch(todoActions.loginSuccess(data.logIn));
     }
     return () => {};
   }, [logInRes]);
@@ -64,8 +69,6 @@ function Login() {
   };
 
   const onDismiss = () => setVisible(false);
-
-  console.log("render login");
 
   return (
     <div className="input-form">

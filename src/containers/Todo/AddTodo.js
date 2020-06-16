@@ -1,24 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, Form, FormGroup, Row, Col } from "reactstrap";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import * as todoActions from "../../store/actions";
-import { TodoContext } from "../../contexts/todos";
-
-const ADD_TODO = gql`
-  mutation AddTodo($content: String!) {
-    createTodo(content: $content) {
-      _id
-      content
-    }
-  }
-`;
+import { ADD_TODO } from "../../graphql/mutations";
 
 export default function AddTodo() {
+  const dispatch = useDispatch();
   const [createTodo, createTodoRes] = useMutation(ADD_TODO);
   const [taskName, setTaskName] = useState("");
-  const { dispatch } = useContext(TodoContext);
 
   useEffect(() => {
     const { data } = createTodoRes;

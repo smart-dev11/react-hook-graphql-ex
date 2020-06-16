@@ -1,26 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Table } from "reactstrap";
-import gql from "graphql-tag";
 import { useLazyQuery } from "@apollo/react-hooks";
 
 import Todo from "./Todo";
 import * as todoActions from "../../store/actions";
-import { TodoContext } from "../../contexts/todos";
-
-const GET_TODOS = gql`
-  query GetTodos {
-    getTodos {
-      _id
-      content
-    }
-  }
-`;
+import { GET_TODOS } from "../../graphql/queries";
 
 export default function TodoList() {
-  const [getTodos, getTodosRef] = useLazyQuery(GET_TODOS);
-  const { state, dispatch } = useContext(TodoContext);
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos);
   const [isEditing, setIsEditingg] = useState(null);
-  const { todos } = state;
+  const [getTodos, getTodosRef] = useLazyQuery(GET_TODOS);
 
   useEffect(() => {
     if (getTodosRef.data)
