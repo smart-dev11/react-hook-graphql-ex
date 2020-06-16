@@ -110,7 +110,7 @@ function Login() {
               )}
             </FormGroup>
           </Col>
-          <Col sm={12} className="form-bottom" row>
+          <Col sm={12} className="form-bottom" row="true">
             <Button color="primary" type="submit" className="btn-auth">
               Login
             </Button>

@@ -11,9 +11,6 @@ export const global_state = {
   todos: todos_initial_state,
 };
 
-const rootReducer = combineReducers({
+export default {
   todos: todosReducer,
-  routing: routerReducer,
-});
-
-export default rootReducer;
+};
