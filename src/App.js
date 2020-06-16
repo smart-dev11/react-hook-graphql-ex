@@ -1,10 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { Router, Route, Switch } from "react-router";
+import { Router, Switch } from "react-router";
+import { PersistGate } from "redux-persist/es/integration/react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import { PersistGate } from "redux-persist/es/integration/react";
-import { ConnectedRouter } from "react-router-redux";
 
 import Login from "./containers/auth/Login";
 import Register from "./containers/auth/Register";

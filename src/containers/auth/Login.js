@@ -33,11 +33,11 @@ function Login() {
     color: "default",
   });
   const [visible, setVisible] = useState(false);
-  const { register, handleSubmit, control } = useForm(); // initialise the hook
+  const { handleSubmit, control } = useForm(); // initialise the hook
   const [logIn, logInRes] = useMutation(LOGIN);
 
   useEffect(() => {
-    const { called, data, loading, error } = logInRes;
+    const { called, loading, error } = logInRes;
     if (called && !loading && error) {
       setVisible(true);
       setMessage({

@@ -5,7 +5,7 @@ import TodoList from "../components/Todo/TodoList";
 import Footer from "../components/Todo/Footer";
 import { TodoContextProvider } from "../contexts/todos";
 
-const App = () => (
+const Todo = () => (
   <div className="container">
     <Header />
     <TodoContextProvider>
@@ -16,4 +16,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default Todo;

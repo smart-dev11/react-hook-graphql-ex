@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
   Button,
@@ -33,11 +33,11 @@ function Register() {
     color: "default",
   });
   const [visible, setVisible] = useState(false);
-  const { register, handleSubmit, control } = useForm(); // initialise the hook
+  const { handleSubmit, control } = useForm(); // initialise the hook
   const [signUp, signUpRes] = useMutation(REGISTER);
 
   useEffect(() => {
-    const { called, data, loading, error } = signUpRes;
+    const { called, loading, error } = signUpRes;
     if (called && !loading && error) {
       setVisible(true);
       setMessage({
