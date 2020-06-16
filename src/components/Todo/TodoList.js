@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 import { useLazyQuery } from "@apollo/react-hooks";
 
 import Todo from "./Todo";
-import * as todoActions from "../store/actions";
-import { TodoContext } from "./../contexts/todos";
+import * as todoActions from "../../store/actions";
+import { TodoContext } from "../../contexts/todos";
 
 const GET_TODOS = gql`
   query GetTodos {

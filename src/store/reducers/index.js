@@ -1,6 +1,5 @@
-import { combineReducers } from "redux";
+import authReducer from "./auth";
 import todosReducer from "./todos";
-import { routerReducer } from "react-router-redux";
 
 const todos_initial_state = {
   todoLists: [],
@@ -13,4 +12,5 @@ export const global_state = {
 
 export default {
   todos: todosReducer,
+  auth: authReducer,
 };

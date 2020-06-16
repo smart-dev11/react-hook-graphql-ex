@@ -3,8 +3,8 @@ import { Button, Input, Form, FormGroup, Row, Col } from "reactstrap";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
-import * as todoActions from "../store/actions";
-import { TodoContext } from "./../contexts/todos";
+import * as todoActions from "../../store/actions";
+import { TodoContext } from "../../contexts/todos";
 
 const ADD_TODO = gql`
   mutation AddTodo($content: String!) {

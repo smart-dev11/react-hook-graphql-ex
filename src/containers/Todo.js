@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../components/Header";
-import AddTodo from "../components/AddTodo";
-import TodoList from "../components/TodoList";
-import Footer from "../components/Footer";
+import Header from "../components/Todo/Header";
+import AddTodo from "../components/Todo/AddTodo";
+import TodoList from "../components/Todo/TodoList";
+import Footer from "../components/Todo/Footer";
 import { TodoContextProvider } from "../contexts/todos";
 
 const App = () => (
