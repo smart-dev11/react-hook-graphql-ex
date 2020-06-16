@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from "react-redux";
 import { Router, Route, Switch } from "react-router";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
@@ -10,6 +11,7 @@ import Register from "./containers/auth/Register";
 import Todo from "./containers/Todo";
 import configureStore, { history } from "./store/createStore";
 import PrivateRoute from "./route-helpers/PrivateRoute";
+import GuestRoute from "./route-helpers/GuestRoute";
 
 const { persistor, store } = configureStore();
 
@@ -18,19 +20,22 @@ const client = new ApolloClient({
 });
 
 const App = () => (
-  <ApolloProvider store={store} client={client}>
-    <PersistGate loading="Loading..." persistor={persistor}>
-      <Router history={history}>
-        <React.Fragment>
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <PersistGate loading="Loading..." persistor={persistor}>
+        <Router history={history}>
           <Switch>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/register" component={Register}></Route>
-            <Route exact path="/" component={Todo}></Route>
-            {/* <PrivateRoute exact path="/" component={Todo}></PrivateRoute> */}
+            <GuestRoute exact path="/login" component={Login}></GuestRoute>
+            <GuestRoute
+              exact
+              path="/register"
+              component={Register}
+            ></GuestRoute>
+            <PrivateRoute exact path="/" component={Todo}></PrivateRoute>
           </Switch>
-        </React.Fragment>
-      </Router>
-    </PersistGate>
+        </Router>
+      </PersistGate>
+    </Provider>
   </ApolloProvider>
 );
 

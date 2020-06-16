@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
   Button,
@@ -64,6 +64,8 @@ function Login() {
   };
 
   const onDismiss = () => setVisible(false);
+
+  console.log("render login");
 
   return (
     <div className="input-form">

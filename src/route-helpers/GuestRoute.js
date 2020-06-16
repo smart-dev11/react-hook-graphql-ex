@@ -15,4 +15,4 @@ const mapStateToProps = ({ auth: { isAuthenticated } }) => ({
   isAuthenticated,
 });
 
-export default connect(mapStateToProps)(GuestRoute);
+export default connect(mapStateToProps, null)(GuestRoute);
