@@ -1,29 +1,61 @@
 .container {
-    padding: 50px;
+  padding: 50px;
 }
 
 form {
-    display: flex;
+  display: flex;
 }
 
 .form-group {
-    margin: 0;
+  margin: 0;
 }
 
-.btn-primary {
-    margin-left: 30px;
+.btn-create-task {
+  margin-left: 30px;
 }
 
 .btn-reset {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid;
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid;
 }
 
 .add-todo-form {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.input-edit-content {
+  max-width: 500px;
+  width: 100%;
+}
+
+.input-form {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-form form {
+  max-width: 400px;
+  width: 100%;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+.form-bottom {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+.btn-auth {
+  margin-right: 30px;
 }
