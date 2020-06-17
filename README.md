@@ -1,4 +1,4 @@
-# React Redux Todos Example
+# React Redux GraphQL react hooks.
 
 ## Available Scripts
 
