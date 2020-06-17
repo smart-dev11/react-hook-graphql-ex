@@ -12,20 +12,11 @@ import {
   Alert,
 } from "reactstrap";
 import * as _ from "lodash";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { registerFormValidate } from "../../helpers/validates";
 import { authAction } from "../../store/actions";
-
-const REGISTER = gql`
-  mutation Register($email: String!, $password: String!) {
-    signUp(email: $email, password: $password) {
-      _id
-      email
-    }
-  }
-`;
+import { REGISTER } from "../../graphql/mutations";
 
 function Register() {
   const [errors, setErrors] = useState({});

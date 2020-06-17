@@ -13,20 +13,11 @@ import {
   Alert,
 } from "reactstrap";
 import * as _ from "lodash";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { loginFormValidate } from "../../helpers/validates";
 import { authAction } from "../../store/actions";
-
-const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    logIn(email: $email, password: $password) {
-      _id
-      email
-    }
-  }
-`;
+import { LOGIN } from "../../graphql/mutations";
 
 function Login() {
   const [errors, setErrors] = useState({});

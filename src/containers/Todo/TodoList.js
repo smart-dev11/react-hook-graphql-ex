@@ -21,6 +21,7 @@ export default function TodoList() {
   }, [getTodosRef.data]);
 
   useEffect(() => {
+    console.log(123123123123);
     getTodos();
 
     return () => {};
