@@ -1,5 +1,5 @@
-node_modules/
-.vscode
+*/node_modules/
+**/.vscode
 .DS_store
-coverage
-src/__tests__/__snapshots__
+**/coverage
+frontend/src/__tests__/__snapshots__
