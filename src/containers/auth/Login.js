@@ -19,7 +19,7 @@ import { loginFormValidate } from "../../helpers/validates";
 import { authAction } from "../../store/actions";
 import { LOGIN } from "../../graphql/mutations";
 
-function Login() {
+function Login({ onSubmitHandle }) {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({
     content: "",
@@ -39,7 +39,6 @@ function Login() {
         color: "danger",
       });
     } else if (called && !loading && !error) {
-      console.log(data);
       setVisible(true);
       setMessage({
         content: "Loin Success",
@@ -63,7 +62,7 @@ function Login() {
 
   return (
     <div className="input-form">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmitHandle || onSubmit)}>
         <Row>
           <Col sm={12}>
             <Alert

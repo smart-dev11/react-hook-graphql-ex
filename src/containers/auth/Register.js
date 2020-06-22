@@ -19,7 +19,7 @@ import { registerFormValidate } from "../../helpers/validates";
 import { authAction } from "../../store/actions";
 import { REGISTER } from "../../graphql/mutations";
 
-function Register() {
+function Register({ onSubmitHandle }) {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({
     content: "",
@@ -44,7 +44,7 @@ function Register() {
         content: "Signup Success",
         color: "success",
       });
-      console.log(data);
+
       dispatch(authAction.registerSuccess(data.signUp));
     }
     return () => {};
@@ -62,7 +62,10 @@ function Register() {
 
   return (
     <div className="input-form">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form
+        onSubmit={handleSubmit(onSubmitHandle || onSubmit)}
+        id="register-form"
+      >
         <Row>
           <Col sm={12}>
             <Alert
