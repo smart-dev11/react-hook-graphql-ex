@@ -15,11 +15,11 @@ import {
 import * as _ from "lodash";
 import { useMutation } from "@apollo/react-hooks";
 
-import { registerFormValidate } from "../../helpers/validates";
+import { loginFormValidate } from "../../helpers/validates";
 import { authAction } from "../../store/actions";
-import { REGISTER } from "../../graphql/mutations";
+import { LOGIN } from "../../graphql/mutations";
 
-function Register() {
+function Login({ onSubmitHandle }) {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({
     content: "",
@@ -28,33 +28,33 @@ function Register() {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const { handleSubmit, control } = useForm(); // initialise the hook
-  const [signUp, signUpRes] = useMutation(REGISTER);
+  const [logIn, logInRes] = useMutation(LOGIN);
 
   useEffect(() => {
-    const { called, data, loading, error } = signUpRes;
+    const { called, data, loading, error } = logInRes;
     if (called && !loading && error) {
       setVisible(true);
       setMessage({
-        content: "Signup Failed",
+        content: "Login Failed",
         color: "danger",
       });
     } else if (called && !loading && !error) {
       setVisible(true);
       setMessage({
-        content: "Signup Success",
+        content: "Loin Success",
         color: "success",
       });
-      console.log(data);
-      dispatch(authAction.registerSuccess(data.signUp));
+      dispatch(authAction.loginSuccess(data.logIn));
     }
     return () => {};
-  }, [signUpRes]);
+  }, [logInRes]);
 
   const onSubmit = (data) => {
-    const errors = registerFormValidate(data);
+    const errors = loginFormValidate(data);
     setErrors(errors);
+
     if (_.isEmpty(errors)) {
-      signUp({ variables: { email: data.email, password: data.password } });
+      logIn({ variables: { email: data.email, password: data.password } });
     }
   };
 
@@ -62,7 +62,7 @@ function Register() {
 
   return (
     <div className="input-form">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmitHandle || onSubmit)}>
         <Row>
           <Col sm={12}>
             <Alert
@@ -105,27 +105,11 @@ function Register() {
               )}
             </FormGroup>
           </Col>
-          <Col sm={12}>
-            <FormGroup row>
-              <Label for="confirmPassword">Confirm Password:</Label>
-              <Controller
-                as={Input}
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                control={control}
-                defaultValue=""
-              />
-              {errors.confirmPassword && (
-                <span className="error">Confirm Password is required.</span>
-              )}
-            </FormGroup>
-          </Col>
-          <Col sm={12} className="form-bottom">
+          <Col sm={12} className="form-bottom" row="true">
             <Button color="primary" type="submit" className="btn-auth">
-              Register
+              Login
             </Button>
-            <Link to={"/login"}>Login</Link>
+            <Link to={"/register"}>Register</Link>
           </Col>
         </Row>
       </Form>
@@ -133,4 +117,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
